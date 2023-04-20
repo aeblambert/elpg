@@ -8,3 +8,13 @@
     display: flex;
     justify-content: center;
 }
+
+.button-container button {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #13B33B;
+    color: white;
+    cursor: pointer;
+}
