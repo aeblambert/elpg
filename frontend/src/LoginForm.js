@@ -29,7 +29,7 @@ function LoginForm() {
                     // Proceed with the login process
                 }
             }}
-            autocomplete="email"
+            autoComplete="email"
         >
             <div className="input-container">
                 <label htmlFor="email">Email:</label>

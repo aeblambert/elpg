@@ -53,7 +53,7 @@ const RegistrationForm = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    autocomplete="email"
+                    autoComplete="email"
                 />
                 {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
