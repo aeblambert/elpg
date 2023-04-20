@@ -74,3 +74,30 @@ button {
 .header-button:hover {
   background-color: #0056b3;
 }
+
+.custom-modal-overlay {
+  position: fixed; /* Change from flex to fixed */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.custom-modal-content {
+  background-color: white;
+  border-radius: 4px;
+  max-width: 400px; /* Set a maximum width for the modal */
+  width: 80%; /* Set the width as a percentage of the viewport */
+  max-height: 80%; /* Set a maximum height for the modal */
+  height: auto; /* Set the height to auto so that it will fit the content */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}

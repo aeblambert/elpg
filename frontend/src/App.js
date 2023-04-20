@@ -2,17 +2,27 @@
 import React, { useState } from 'react';
 import './App.css';
 import RegistrationForm from './RegistrationForm';
-import ModalWrapper from './ModalWrapper';
+import LoginForm from './LoginForm';
+import Modal from './Modal';
 
 function App() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
-    const openModal = () => {
-        setIsModalOpen(true);
+    const openRegistrationModal = () => {
+        setIsRegistrationModalOpen(true);
     };
 
-    const closeModal = () => {
-        setIsModalOpen(false);
+    const closeRegistrationModal = () => {
+        setIsRegistrationModalOpen(false);
+    };
+
+    const openLoginModal = () => {
+        setIsLoginModalOpen(true);
+    };
+
+    const closeLoginModal = () => {
+        setIsLoginModalOpen(false);
     };
 
     return (
@@ -23,9 +33,9 @@ function App() {
                     <h1 className="h1-style"> Vienna Kids Bookshare</h1>
                 </div>
                 <div className="header-buttons">
-                    <button className="header-button" onClick={openModal}>
+                    <button className="header-button" onClick={openLoginModal}>
                         Log in</button>
-                    <button className="header-button" onClick={openModal}>
+                    <button className="header-button" onClick={openRegistrationModal}>
                         New account
                     </button>
                 </div>
@@ -35,11 +45,16 @@ function App() {
             <main className="App-main">
                 <p>To view and share books, please log in or create an account</p>
             </main>
-            <ModalWrapper isOpen={isModalOpen} onRequestClose={closeModal}>
+            <Modal isOpen={isRegistrationModalOpen} onRequestClose={closeRegistrationModal}>
                 <h2>Register</h2>
                 <RegistrationForm />
-                <button onClick={closeModal}>Close</button>
-            </ModalWrapper>
+                <button onClick={closeRegistrationModal}>Close</button>
+            </Modal>
+            <Modal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal}>
+                <h2>Log in</h2>
+                <LoginForm />
+                <button onClick={closeLoginModal}>Close</button>
+            </Modal>
         </div>
     );
 }
