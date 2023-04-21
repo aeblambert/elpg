@@ -3,6 +3,7 @@ package com.bookshare.model;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "bookshare_users")
 public class User {
 
     @Id

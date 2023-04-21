@@ -8,6 +8,7 @@ import Modal from './Modal';
 function App() {
     const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [registrationMessage, setRegistrationMessage] = useState('');
 
     const openRegistrationModal = () => {
         setIsRegistrationModalOpen(true);
@@ -43,11 +44,15 @@ function App() {
 
             </header>
             <main className="App-main">
-                <p>To view and share books, please log in or register a new account</p>
+                {registrationMessage ? (
+                    <p>{registrationMessage}</p>
+                ) : (
+                    <p>To view and share books, please log in or register a new account</p>
+                )}
             </main>
             <Modal isOpen={isRegistrationModalOpen} onRequestClose={closeRegistrationModal}>
                 <h2>Register</h2>
-                <RegistrationForm />
+                <RegistrationForm closeModal={closeRegistrationModal} setRegistrationMessage={setRegistrationMessage}/>
             </Modal>
             <Modal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal}>
                 <h2>Log in</h2>

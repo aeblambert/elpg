@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './Form.css';
+import config from './config';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -11,7 +12,22 @@ const RegistrationForm = () => {
         event.preventDefault();
         // Handle form submission logic here
         if (validateForm()) {
-            console.log('Form submitted:', {email, password, confirmPassword});
+            fetch(`${config.apiUrl}/users/register`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        setRegistrationMessage('Registration successful! Please log in.');
+                        closeModal();
+                    } else {
+                        throw new Error('Registration failed. Please try again.');
+                    }
+                })
+                .catch(error => console.error(error));
         }
     };
 

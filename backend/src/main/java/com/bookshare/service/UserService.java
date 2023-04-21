@@ -3,6 +3,7 @@ package com.bookshare.service;
 import com.bookshare.model.User;
 import com.bookshare.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,15 +22,15 @@ public class UserService {
 
     // Implement methods for user-related operations, e.g., registration, finding users, etc.
 
-    public void registerUser(String email, String password) {
-
+    public ResponseEntity<String> registerUser(String email, String password) {
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new RuntimeException("User with email " + email + " already exists");
+            return ResponseEntity.badRequest().body("User with email " + email + " already exists");
+        } else {
+            User newUser = new User();
+            newUser.setEmail(email);
+            newUser.setHashedPassword(passwordEncoder.encode(password));
+            userRepository.save(newUser);
+            return ResponseEntity.ok("User registered successfully");
         }
-        User newUser = new User();
-        newUser.setEmail(email);
-        newUser.setHashedPassword(passwordEncoder.encode(password));
-        userRepository.save(newUser);
     }
-
 }
