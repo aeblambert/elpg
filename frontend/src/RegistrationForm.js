@@ -21,11 +21,15 @@ const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
             })
                 .then(response => {
                     if (response.ok) {
-                        setRegistrationMessage('Registration successful! Please log in.');
-                        closeModal();
+                        return response.json();
                     } else {
-                        throw new Error('Registration failed. Please try again.');
+                        throw new Error('Failure in network response.');
                     }
+                })
+                .then(data => {
+                    console.log(data.message);
+                    setRegistrationMessage(data.message);
+                    closeModal();
                 })
                 .catch(error => console.error(error));
         }
