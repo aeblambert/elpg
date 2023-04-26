@@ -16,6 +16,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    // TODO: Avoid Autowired and inject asswordEncoder to the constructor
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -26,6 +27,7 @@ public class UserService {
 
     // Implement methods for user-related operations, e.g., registration, finding users, etc.
 
+    // TODO: Change magic variables like "message" to enums or constants in an interface
     public HashMap<String, String> registerUser(String email, String password) {
         if (userRepository.findByEmail(email).isPresent()) {
             HashMap<String, String> response = new HashMap<>();

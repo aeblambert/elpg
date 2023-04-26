@@ -3,10 +3,28 @@ import './Form.css';
 import config from './config';
 
 const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({ email: "", password: "", confirmPassword: "" });
+    const [userRegData, setUserRegData] = useState(
+        {
+            email:'',
+            password:'',
+            confirmPassword:''
+        });
+
+    const handleUserRegDataChange = (key, value) => {
+        setUserRegData(prevData => {
+            return (
+                {
+                    ...prevData,
+                    [key]: value
+                }
+            );
+        });
+    }
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -70,8 +88,10 @@ const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
                 <input
                     type="email"
                     id="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    // value={email}
+                    value={userRegData.email}
+                    // onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => handleUserRegDataChange("email", e.target.value)}
                     required
                     autoComplete="email"
                 />
@@ -82,8 +102,9 @@ const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
                 <input
                     type="password"
                     id="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={userRegData.password}
+                    // onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => handleUserRegDataChange("password", e.target.value)}
                     required
                 />
                 {errors.password && <span className="error-message">{errors.password}</span>}
@@ -93,8 +114,9 @@ const RegistrationForm = ({closeModal, setRegistrationMessage}) => {
                 <input
                     type="password"
                     id="password-confirmation"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    value={userRegData.confirmPassword}
+                    //onChange={(e) => setConfirmPassword(e.target.value)}
+                    onChange={(e) => handleUserRegDataChange("confirmPassword", e.target.value)}
                     required
                 />
                 {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}

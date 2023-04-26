@@ -13,7 +13,7 @@ function LoginForm() {
             return false;
         }
 
-        if (password.length < 8) {
+        if (password.length < 8) { // TODO: Magic numbers
             alert('Password must be at least 8 characters long.');
             return false;
         }

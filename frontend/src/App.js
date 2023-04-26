@@ -10,22 +10,6 @@ function App() {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [registrationMessage, setRegistrationMessage] = useState('');
 
-    const openRegistrationModal = () => {
-        setIsRegistrationModalOpen(true);
-    };
-
-    const closeRegistrationModal = () => {
-        setIsRegistrationModalOpen(false);
-    };
-
-    const openLoginModal = () => {
-        setIsLoginModalOpen(true);
-    };
-
-    const closeLoginModal = () => {
-        setIsLoginModalOpen(false);
-    };
-
     return (
         <div className="App">
             <header className="App-header">
@@ -33,10 +17,10 @@ function App() {
                     <img src="/book_image.jpg" alt="Books" className="book-image-style" />
                     <h1 className="h1-style"> Vienna Kids Bookshare</h1>
                 </div>
-                <div className="header-buttons">
-                    <button className="header-button" onClick={openLoginModal}>
+                <div className="header-buttons">                    
+                    <button className="header-button" onClick={() => setIsLoginModalOpen(true)}>
                         Log in</button>
-                    <button className="header-button" onClick={openRegistrationModal}>
+                    <button className="header-button" onClick={() => setIsRegistrationModalOpen(true)}>
                         Register
                     </button>
                 </div>
@@ -46,11 +30,11 @@ function App() {
             <main className="App-main">
                 <p>{registrationMessage || "To view and share books, please log in or register a new account"}</p>
             </main>
-            <Modal isOpen={isRegistrationModalOpen} onRequestClose={closeRegistrationModal}>
+            <Modal isOpen={isRegistrationModalOpen} onRequestClose={()=>setIsRegistrationModalOpen(false)}>
                 <h2>Register</h2>
-                <RegistrationForm closeModal={closeRegistrationModal} setRegistrationMessage={setRegistrationMessage}/>
+                <RegistrationForm closeModal={()=>setIsRegistrationModalOpen(false)} setRegistrationMessage={setRegistrationMessage}/>
             </Modal>
-            <Modal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal}>
+            <Modal isOpen={isLoginModalOpen} onRequestClose={()=>setIsLoginModalOpen(false)}>
                 <h2>Log in</h2>
                 <LoginForm />
             </Modal>

@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 
-const Modal = ({ isOpen, onRequestClose, children }) => {
+// const Modal = ({ isOpen, onRequestClose, children }) => {
+const Modal = props => {    
     return (
         <ReactModal
-            isOpen={isOpen}
-            onRequestClose={onRequestClose}
+            isOpen={props.isOpen}
+            onRequestClose={props.onRequestClose}
             overlayClassName="custom-modal-overlay"
             className="custom-modal-content"
             contentLabel="Modal"
             ariaHideApp={false}
         >
-            {children}
+        {props.children}
         </ReactModal>
     );
 };
