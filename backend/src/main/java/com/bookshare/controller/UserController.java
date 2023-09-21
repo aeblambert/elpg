@@ -25,9 +25,7 @@ public class UserController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody UserRegistrationRequest registrationRequest) {
         try {
-            userService.registerUser(registrationRequest.getEmail(), registrationRequest.getPassword());
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "User " + registrationRequest.getEmail() + " registered successfully");
+            HashMap<String, String> response = userService.registerUser(registrationRequest.getEmail(), registrationRequest.getPassword());
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             Map<String, String> response = new HashMap<>();

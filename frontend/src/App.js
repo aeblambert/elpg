@@ -43,11 +43,7 @@ function App() {
 
             </header>
             <main className="App-main">
-                {registrationMessage ? (
-                    <p>{registrationMessage}</p>
-                ) : (
-                    <p>To view and share books, please log in or register a new account</p>
-                )}
+                <p>{registrationMessage || "To view and share books, please log in or register a new account"}</p>
             </main>
             <Modal isOpen={isRegistrationModalOpen} onRequestClose={closeRegistrationModal}>
                 <h2>Register</h2>
