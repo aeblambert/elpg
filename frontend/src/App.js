@@ -1,8 +1,7 @@
 
 import React, { useState } from 'react';
 import './App.css';
-import RegistrationForm from './RegistrationForm';
-import LoginForm from './LoginForm';
+import AuthForm from './AuthForm';
 import Modal from './Modal';
 
 function App() {
@@ -52,17 +51,14 @@ function App() {
             </main>
             <Modal isOpen={isRegistrationModalOpen} onRequestClose={closeRegistrationModal}>
                 <h2>Register</h2>
-                <RegistrationForm closeModal={closeRegistrationModal} setRegistrationMessage={setRegistrationMessage}/>
+                <AuthForm closeModal={closeRegistrationModal} setRegistrationMessage={setRegistrationMessage}/>
             </Modal>
             <Modal isOpen={isLoginModalOpen} onRequestClose={closeLoginModal}>
                 <h2>Log in</h2>
-                <LoginForm />
+                <AuthForm />
             </Modal>
         </div>
     );
 }
 
 export default App;
-
-
-
